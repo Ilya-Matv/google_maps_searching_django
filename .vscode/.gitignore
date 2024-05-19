@@ -1,4 +1,4 @@
-jobs_search/jobs_search/secret_key.py
+Jobs_search/Jobs_search/secret_key.py
 
 
-jobs_search/db.sqlite3
+Jobs_search/db.sqlite3
