@@ -1,0 +1,35 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+<div class="center">
+    <h1> List of your searches </h1>
+    <ol class="list-group list-group-numbered">
+      {% for busines_list in data_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <a href="{% url 'business_card' busines_list.id %}">{{ busines_list.name }}</a>
+            {{ busines_list|date:"M, d, Y" }}
+            <span class="badge text-bg-primary rounded-pill">{{ busines_list.count_num }}</span>
+          </div>
+
+      {% endfor %}
+
+    </ol>
+
+       <br></br>     
+       <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+    {% if data_list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ data_list.previous_page_number }}">&laquo Previous </a></li>
+    {% endif %}
+        <li class="page-item"><a href="#" class="page-link">Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}</a></li>
+    {% if data_list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ data_list.next_page_number }}"> Next &raquo </a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ data_list.paginator.num_pages }}"> Last &raquo </a></li>
+    {% endif %}
+        </ul>
+      </nav>
+</div>
+
+
+{% endblock %}

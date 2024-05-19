@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+<div id="center">
+    <div id="Business_cards">
+    {% for business in data_cards %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ business.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ business.address }}</h6>
+            <a href="https://{{ business.website }}" class="card-link" target="_blank">{{ business.website }}</a>
+            <a href="#" class="card-link">{{ business.phone_number }}</a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    <br></br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if data_cards.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ data_cards.previous_page_number }}">&laquo Previous </a></li>
+            {% endif %}
+            <li class="page-item"><a href="#" class="page-link">Page {{ data_cards.number }} of {{ data_cards.paginator.num_pages }}</a></li>
+            {% if data_cards.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ data_cards.next_page_number }}"> Next &raquo </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ data_cards.paginator.num_pages }}"> Last &raquo </a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}

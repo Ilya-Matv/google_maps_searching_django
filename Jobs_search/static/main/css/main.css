@@ -1,0 +1,94 @@
+
+#nav_layout {
+    background: linear-gradient(to right,rgb(245, 236, 219) 150px,rgba(0, 221, 255, 0.2));
+}
+.offcanvas {
+    background: rgba(0, 221, 255, 0.818);
+}
+.dropdown-menu {
+    background: rgb(245, 236, 219);
+}
+.dropdown-item:hover {
+    background-color: rgba(0, 221, 255, 0.95); /* Set background color on hover */
+    color: #000; /* Set text color on hover */
+}
+.navbar-toggler {
+    order: 1; /* Moves the toggler to the right */
+  }
+.navbar-brand {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 30%; /* Limit the maximum width of the navbar-brand */
+    position:absolute;
+}
+#carouselExampleDark .carousel-inner .carousel-item {
+    height: 80vh; /* Set height to 100% of viewport height */
+}
+
+#carouselExampleDark .carousel-inner .carousel-item img {
+    height: 100%; /* Set image height to 100% of carousel item height */
+    width: auto; /* Allow the width to adjust proportionally based on the height */
+    object-fit: cover; /* Ensure the image covers the entire container, maintaining aspect ratio */
+}
+main {
+    /*display: flex;
+    /*justify-content:center;  Center horizontally */
+    /*align-items:start; */
+    /*height: 100vh; /* Make the body take up the full viewport height */
+    background-color:hsl(42, 31%, 94%);
+}
+.center {
+    background-color:hsl(42, 31%, 94%);
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+#Mass_param {
+    position: absolute; /* Position the message window relative to its parent container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px; /* Add padding for better visibility */
+    background-color: hsl(52, 74%, 40%); /* Adjust background color as needed */
+    color: hsl(46, 35%, 15%); /* Adjust text color as needed */
+    text-align: center; /* Center-align the text */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    z-index: 9999; /* Ensure the message window appears on top of other elements */
+    overflow: hidden; /* Hide overflow to prevent unnecessary horizontal scroll */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+#Business_cards {
+    background-color:hsl(42, 31%, 94%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+.card {
+    flex: 1 0 calc(33.33% - 10px); /* Adjust the size of each card and the indent */
+    margin-bottom: 10px; /* Add some space between rows */
+    width: 100%; /* Ensure each card takes up the entire width */
+    max-width: 350px; /* Set maximum width for large screens */
+}
+@media (max-width: 768px) {
+    /* Styles for smaller screens */
+    .card {
+        flex-basis: calc(50% - 10px); /* Adjust the size of each card for smaller screens */
+    }
+}
+#car_text {
+    background-color: rgba(255, 255, 255, 0.2); /* White color with 50% opacity */
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 24px; /* Set font size of paragraphs inside elements with class 'sidebar' to 14 pixels */
+}
+#container {
+    background-color:hsl(42, 31%, 94%);
+
+}

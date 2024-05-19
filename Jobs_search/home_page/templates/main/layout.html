@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block Title %}{% endblock %}</title>
+    <link rel="stylesheet" href = {% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href = {% static 'main/css/main.css' %}>
+</head>
+<body>
+  <nav class="navbar bg-body-tertiary fixed-top", id = "nav_layout">
+    <div class="container-fluid">
+      <img src="{% static 'main/img/logo.jpg'%}" alt= "logo" width="10%" height="auto">
+      <a class="navbar-brand" >{% if user.is_authenticated %} {{ user.username }} {% endif %}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={% url 'home' %}><li><i class="bi bi-house"></i>Home<li></li></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={% url 'about' %}>About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={% url 'contacts' %}>Contacts</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={% url 'scrap' %}>Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={% url 'navigation_lists' %}>Your data</a>
+            </li>
+            {% endif %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Verify
+              </a>
+              <ul class="dropdown-menu">
+                {% if user.is_authenticated %}
+                  <li><a class="dropdown-item" href={% url 'logout' %}>Logout</a></li>
+                {% else %} 
+                  <li><a class="dropdown-item" href={% url 'register' %}>Register</a></li>
+                  <li><a class="dropdown-item" href={% url 'login' %}>Login</a></li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show position-fixed top-0 w-100 text-center" role="alert" id="Mass_param">
+          <div class="container">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+        {% endfor %}
+      {% endif %}
+  </main>
+<script src={% static 'bootstrap-5.3.3-dist/js/bootstrap.js' %}></script>
+<script src={% static 'bootstrap-5.3.3-dist/js/bootstrap.bundle.js' %}></script>
+<!--<script src={% static 'main/jquery/jquery-3.7.1.min.js' %}></script>-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      var alert = document.querySelector('.alert');
+      if(alert) {
+        alert.classList.add('fade');
+        setTimeout(function() {
+          alert.remove();
+        }, 750); // fade out duration
+      }
+    }, 750); // alert display duration
+  });
+  document.addEventListener("DOMContentLoaded", function() {
+      // Get the height of the navigation bar
+      var navbarHeight = document.querySelector("nav").offsetHeight;
+      var navbarBrand = document.querySelector(".navbar-brand");
+      var navbarToggler = document.querySelector(".navbar-toggler");
+
+      // Set the margin-top of the main content to the height of the navigation bar
+      document.querySelector("main").style.marginTop = navbarHeight + "px";
+      function setBrandPosition() {
+        var togglerRect = navbarToggler.getBoundingClientRect();
+        var togglerWidth = togglerRect.width;
+        var rightOffset = window.innerWidth - togglerRect.right;
+        var brandWidth = navbarBrand.offsetWidth;
+        var totalOffset = rightOffset + togglerWidth;
+        navbarBrand.style.right = totalOffset + "px";
+    }
+    
+    setBrandPosition(); // Call the function once on page load
+    
+    // Recalculate and set brand position on window resize
+    window.addEventListener("resize", setBrandPosition);
+  });
+</script>
+</body>
+</html>
